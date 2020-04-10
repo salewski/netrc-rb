@@ -47,8 +47,9 @@ jobs:
         grep -R -e 'ALJUNK-second' -e 'ddeb' -e 'dbgsym' /etc/apt  1>&2 || true
         sudo apt-get --assume-yes install -V ubuntu-dbgsym-keyring 1>&2 || true
         sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F2EDC64DC5AEE1F6B9C621F0C8CAB6595FDFF622 1>&2
-        sudo apt update             1>&2
-        sudo apt update             1>&2 || true
+        sudo apt-get update         1>&2 || true
+        echo NOOP sudo apt-get --assume-yes install -V apt-file 1>&2 || true
+        echo NOOP sudo apt-file update                          1>&2 || true
         echo FOOOOOOOO
         echo NOOP apt-cache search ruby | grep '^ruby' | sort || true
         sudo apt-get --assume-yes install -V debian-goodies || true
@@ -56,6 +57,10 @@ jobs:
         sudo apt-get --assume-yes install -V ruby2.5        || true
         sudo apt-get --assume-yes install -V ruby2.6        || true
         echo FOOOOOOOOO
+        apt-cache policy ruby2.5           1>&2 || true
+        apt-cache policy ruby2.5-dbgsym    1>&2 || true
+        apt-cache policy libruby2.5        1>&2 || true
+        apt-cache policy libruby2.5-dbgsym 1>&2 || true
         sudo apt-get --assume-yes install -V libgmp10-dbgsym libruby2.5-dbgsym ruby2.5-dbgsym || true
         echo FOOOOOOOOOO
         find-dbgsym-packages /usr/bin/ruby2.6 || true
