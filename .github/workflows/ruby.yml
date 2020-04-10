@@ -99,14 +99,23 @@ jobs:
         set +x
         printf '%s\n' 'ALJUNK: H'   1>&2
         set -x
-        /usr/bin/ruby2.5 -e 'print "foo: #{Dir.respond_to?(:home) && File.readable?(Dir.home) ? Dir.home : Dir.pwd}\n";'
-        /usr/bin/ruby2.5 -e 'print "foo: #{Dir.respond_to?(:home) && File.readable?(Dir.home) ? Dir.home : Dir.pwd}\n";' 1>&2
-        ( /usr/bin/ruby2.5 -e 'print "foo: #{Dir.respond_to?(:home) && File.readable?(Dir.home) ? Dir.home : Dir.pwd}\n";' )
-        ( unset HOME; /usr/bin/ruby2.5 -e 'print "foo: #{Dir.respond_to?(:home) && File.readable?(Dir.home) ? Dir.home : Dir.pwd}\n";' )
-        ( unset HOME; /usr/bin/ruby2.5 -e 'print "foo: #{Dir.respond_to?(:home) && File.readable?(Dir.home) ? Dir.home : Dir.pwd}\n";' ) 1>&2
-        true | ( unset HOME; /usr/bin/ruby2.5 -e 'print "foo: #{Dir.respond_to?(:home) && File.readable?(Dir.home) ? Dir.home : Dir.pwd}\n";' ) 1>&2
-        true | ( unset HOME; /usr/bin/ruby2.5 -e 'print "foo: #{Dir.respond_to?(:home) && File.readable?(Dir.home) ? Dir.home : Dir.pwd}\n";' ) 1>&2 | cat
-        true | ( unset HOME; setsid /usr/bin/ruby2.5 -e 'print "foo: #{Dir.respond_to?(:home) && File.readable?(Dir.home) ? Dir.home : Dir.pwd}\n";' ) 1>&2 | cat
+        printf '%s\n' 'aljunk: 10'  1>&2
+        /usr/bin/ruby2.5 -e 'print "foo: #{Dir.respond_to?(:home) && File.readable?(Dir.home) ? Dir.home : Dir.pwd}\n";'  || true
+        printf '%s\n' 'aljunk: 20'  1>&2
+        /usr/bin/ruby2.5 -e 'print "foo: #{Dir.respond_to?(:home) && File.readable?(Dir.home) ? Dir.home : Dir.pwd}\n";' 1>&2  || true
+        printf '%s\n' 'aljunk: 30'  1>&2
+        ( /usr/bin/ruby2.5 -e 'print "foo: #{Dir.respond_to?(:home) && File.readable?(Dir.home) ? Dir.home : Dir.pwd}\n";' )   || true
+        printf '%s\n' 'aljunk: 40'  1>&2
+        ( unset HOME; /usr/bin/ruby2.5 -e 'print "foo: #{Dir.respond_to?(:home) && File.readable?(Dir.home) ? Dir.home : Dir.pwd}\n";' )  || true
+        printf '%s\n' 'aljunk: 50'  1>&2
+        ( unset HOME; /usr/bin/ruby2.5 -e 'print "foo: #{Dir.respond_to?(:home) && File.readable?(Dir.home) ? Dir.home : Dir.pwd}\n";' ) 1>&2  || true
+        printf '%s\n' 'aljunk: 60'  1>&2
+        true | ( unset HOME; /usr/bin/ruby2.5 -e 'print "foo: #{Dir.respond_to?(:home) && File.readable?(Dir.home) ? Dir.home : Dir.pwd}\n";' ) 1>&2  || true
+        printf '%s\n' 'aljunk: 70'  1>&2
+        true | ( unset HOME; /usr/bin/ruby2.5 -e 'print "foo: #{Dir.respond_to?(:home) && File.readable?(Dir.home) ? Dir.home : Dir.pwd}\n";' ) 1>&2 | cat  || true
+        printf '%s\n' 'aljunk: 80'  1>&2
+        true | ( unset HOME; setsid /usr/bin/ruby2.5 -e 'print "foo: #{Dir.respond_to?(:home) && File.readable?(Dir.home) ? Dir.home : Dir.pwd}\n";' ) 1>&2 | cat  || true
+        printf '%s\n' 'aljunk: 90'  1>&2
         set +x
         printf '%s\n' 'ALJUNK: I'   1>&2
         printf '%s\n' 'ALJUNK: end' 1>&2
