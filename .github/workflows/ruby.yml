@@ -32,11 +32,11 @@ jobs:
         echo maybe tty: $(tty)      1>&2
         printf '%s\n' 'ALJUNK: d'   1>&2
         set -x
-        grep intel_pt /proc/cpuinfo
+        grep intel_pt /proc/cpuinfo || true
         echo FOO
         sudo apt-get --assume-yes install debian-goodies gdb
         echo FOOO
-        find-dbgsym-packages /usr/bin/ruby2.6
+        find-dbgsym-packages /usr/bin/ruby2.6 || true
         set +x
         printf '%s\n' 'ALJUNK: B'   1>&2
         echo home ech: $HOME        1>&2
