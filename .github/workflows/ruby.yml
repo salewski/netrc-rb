@@ -24,6 +24,13 @@ jobs:
         printf '%s\n' 'ALJUNK: A'   1>&2
         echo home decl is ${HOME@A} 1>&2
         printf '%s\n' 'ALJUNK: B'   1>&2
+        echo home ech: $HOME        1>&2
+        echo home exp: ~            1>&2
+        printf '%s\n' 'ALJUNK: C'   1>&2
+        getent passwd runner        1>&2
+        printf '%s\n' 'ALJUNK: D'   1>&2
+        getent passwd               1>&2
+        printf '%s\n' 'ALJUNK: E'   1>&2
         set 1>&2
         printf '%s\n' 'ALJUNK: end' 1>&2
         gem install bundler
