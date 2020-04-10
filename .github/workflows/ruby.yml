@@ -72,4 +72,4 @@ jobs:
         printf '%s\n' 'ALJUNK: end' 1>&2
         gem install bundler
         bundle install --jobs 4 --retry 3
-        bundle exec ruby -e 'Dir.glob "./test/**/test_*.rb", &method(:require)'
+        bundle exec --keep-file-descriptors ruby -e 'Dir.glob "./test/**/test_*.rb", &method(:require)'
