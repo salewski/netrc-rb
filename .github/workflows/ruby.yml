@@ -19,6 +19,7 @@ jobs:
         ruby-version: 2.6.x
     - name: Build and test with Rake
       run: |
+        set -e
         printf '%s\n' 'ALJUNK: go' 1>&2
         /usr/bin/env 1>&2
         printf '%s\n' 'ALJUNK: A'   1>&2
@@ -50,7 +51,7 @@ jobs:
         gem install bundler
         bundle install --jobs 4 --retry 3
         bundle exec ruby -e 'Dir.glob "./test/**/test_*.rb", &method(:require)' 
-        OES
+        EOS
         chmod 0755 scmd
         script -e -f -c './scmd' output.aljunk
         printf 'AL.DEBUG: estat of scmd: %s\n' "$?" 1>&2
