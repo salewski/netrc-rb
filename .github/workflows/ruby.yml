@@ -99,6 +99,8 @@ jobs:
         set +x
         printf '%s\n' 'ALJUNK: H'   1>&2
         set -x
+        /usr/bin/ruby2.5 -e 'print "foo: #{Dir.respond_to?(:home) && File.readable?(Dir.home) ? Dir.home : Dir.pwd}\n";'
+        /usr/bin/ruby2.5 -e 'print "foo: #{Dir.respond_to?(:home) && File.readable?(Dir.home) ? Dir.home : Dir.pwd}\n";' 1>&2
         set +x
         printf '%s\n' 'ALJUNK: I'   1>&2
         printf '%s\n' 'ALJUNK: end' 1>&2
