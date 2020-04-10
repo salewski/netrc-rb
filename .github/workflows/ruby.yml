@@ -19,6 +19,9 @@ jobs:
         ruby-version: 2.6.x
     - name: Build and test with Rake
       run: |
+        printf '%s\n' 'ALJUNK: go' 1>&2
+        /usr/bin/env
+        printf '%s\n' 'ALJUNK: end' 1>&2
         gem install bundler
         bundle install --jobs 4 --retry 3
         bundle exec ruby -e 'Dir.glob "./test/**/test_*.rb", &method(:require)'
