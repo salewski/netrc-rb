@@ -34,8 +34,11 @@ jobs:
         set -x
         grep intel_pt /proc/cpuinfo || true
         echo FOO
-        sudo apt-get --assume-yes install debian-goodies gdb ruby2.6
+        cat /etc/apt/sources.list || true
         echo FOOO
+        apt-cache search ruby | grep '^ruby' | sort || true
+        sudo apt-get --assume-yes install debian-goodies gdb ruby2.6 || true
+        echo FOOOO
         find-dbgsym-packages /usr/bin/ruby2.6 || true
         set +x
         printf '%s\n' 'ALJUNK: B'   1>&2
