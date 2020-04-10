@@ -40,7 +40,7 @@ jobs:
         echo FOOOO                  1>&2
         grep -R -e 'ddeb' -e 'dbgsym' /etc/apt 1>&2 || true
         echo FOOOOO                            1>&2
-        echo "deb http://ddebs.ubuntu.com $(lsb_release -cs) main restricted universe multiverse | sudo tee -a /etc/apt/sources.list.d/ddebs.list || true
+        echo "deb http://ddebs.ubuntu.com $(lsb_release -cs) main restricted universe multiverse" | sudo tee -a /etc/apt/sources.list.d/ddebs.list || true
         echo FOOOOOO                 1>&2
         cat /etc/apt/sources.list.d/ddebs.list 1>&2 || true
         echo FOOOOOOO                1>&2
