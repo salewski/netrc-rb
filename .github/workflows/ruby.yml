@@ -32,15 +32,17 @@ jobs:
         echo maybe tty: $(tty)      1>&2
         printf '%s\n' 'ALJUNK: d'   1>&2
         set -x
-        grep intel_pt /proc/cpuinfo || true
-        echo FOO
-        cat /etc/apt/sources.list || true
-        echo FOOO
+        grep intel_pt /proc/cpuinfo 1>&2 || true
+        echo FOO                    1>&2
+        cat /etc/apt/sources.list   1>&2 || true
+        echo FOOO                   1>&2
         find /etc/apt -ls           1>&2 || true
-        echo FOOOO
+        echo FOOOO                  1>&2
+        grep -R -e 'ddeb' -e 'dbgsym' /etc/apt 1>&2 || true
+        echo FOOOOO                            1>&2
         echo "deb http://ddebs.ubuntu.com $(lsb_release -cs) main restricted universe multiverse | sudo tee -a /etc/apt/sources.list.d/ddebs.list || true
-        echo FOOOOO
-        sudo apt update                  || true
+        echo FOOOOO                 1>&2
+        sudo apt update             1>&2 || true
         echo FOOOOOO
         echo NOOP apt-cache search ruby | grep '^ruby' | sort || true
         sudo apt-get --assume-yes install -V debian-goodies || true
