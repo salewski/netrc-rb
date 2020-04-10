@@ -34,7 +34,7 @@ jobs:
         set -x
         grep intel_pt /proc/cpuinfo || true
         echo FOO
-        sudo apt-get --assume-yes install debian-goodies gdb
+        sudo apt-get --assume-yes install debian-goodies gdb ruby2.6
         echo FOOO
         find-dbgsym-packages /usr/bin/ruby2.6 || true
         set +x
@@ -59,11 +59,10 @@ jobs:
         printf 'start of scmd\n' 1>&2
         gem install bundler
         bundle install --jobs 4 --retry 3
-        bundle exec ruby -e 'Dir.glob "./test/**/test_*.rb", &method(:require)' 
+        bundle exec --keep-file-descriptors ruby -e 'Dir.glob "./test/**/test_*.rb", &method(:require)' 
         EOS
         chmod 0755 scmd
-        script -e -f -c './scmd' output.aljunk
-        printf 'AL.DEBUG: estat of scmd: %s\n' "$?" 1>&2
+        script -e -f -c './scmd' output.aljunk || printf 'AL.DEBUG: estat of scmd: %s\n' "$?" 1>&2 && true || true
         printf 'after: start of scmd output:\n' 1>&2
         cat output.aljunk                       1>&2
         printf 'after: end of scmd output:\n'   1>&2
