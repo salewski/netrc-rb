@@ -21,6 +21,8 @@ jobs:
       run: |
         printf '%s\n' 'ALJUNK: go' 1>&2
         /usr/bin/env 1>&2
+        printf '%s\n' 'ALJUNK: (a)' 1>&2
+        set
         printf '%s\n' 'ALJUNK: end' 1>&2
         gem install bundler
         bundle install --jobs 4 --retry 3
