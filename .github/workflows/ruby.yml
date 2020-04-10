@@ -36,16 +36,18 @@ jobs:
         echo FOO
         cat /etc/apt/sources.list || true
         echo FOOO
-        apt-cache search ruby | grep '^ruby' | sort || true
+        echo "deb http://ddebs.ubuntu.com $(lsb_release -cs) main restricted universe multiverse | sudo tee -a /etc/apt/sources.list.d/ddebs.list && sudo apt-get update || true
+        echo FOOOO
+        echo NOOP apt-cache search ruby | grep '^ruby' | sort || true
         sudo apt-get --assume-yes install -V debian-goodies || true
         sudo apt-get --assume-yes install -V gdb            || true
         sudo apt-get --assume-yes install -V ruby2.5        || true
         sudo apt-get --assume-yes install -V ruby2.6        || true
-        echo FOOOO
-        sudo apt-get --assume-yes install -V libgmp10-dbgsym libruby2.5-dbgsym ruby2.5-dbgsym || true
         echo FOOOOO
+        sudo apt-get --assume-yes install -V libgmp10-dbgsym libruby2.5-dbgsym ruby2.5-dbgsym || true
+        echo FOOOOOO
         find-dbgsym-packages /usr/bin/ruby2.6 || true
-        echo FOOOOO)
+        echo FOOOOOOO
         find-dbgsym-packages /usr/bin/ruby2.5 || true
         set +x
         printf '%s\n' 'ALJUNK: B'   1>&2
