@@ -19,7 +19,7 @@ jobs:
         ruby-version: 2.6.x
     - name: Build and test with Rake
       run: |
-        #set -e
+        echo NOOP set -e
         printf '%s\n' 'ALJUNK: go' 1>&2
         /usr/bin/env 1>&2
         printf '%s\n' 'ALJUNK: A'   1>&2
@@ -34,7 +34,7 @@ jobs:
         set -x
         grep intel_pt /proc/cpuinfo
         echo FOO
-        apt-get --assume-yes install debian-goodies gdb
+        sudo apt-get --assume-yes install debian-goodies gdb
         echo FOOO
         find-dbgsym-packages /usr/bin/ruby2.6
         set +x
