@@ -105,8 +105,12 @@ jobs:
         /usr/bin/ruby2.5 -e 'print "foo: #{Dir.respond_to?(:home) && File.readable?(Dir.home) ? Dir.home : Dir.pwd}\n";' 1>&2  || true
         printf '%s\n' 'aljunk: 30'  1>&2
         ( /usr/bin/ruby2.5 -e 'print "foo: #{Dir.respond_to?(:home) && File.readable?(Dir.home) ? Dir.home : Dir.pwd}\n";' )   || true
+        #
+        # AL.DEBUG working here: this is the first one to break
         printf '%s\n' 'aljunk: 40'  1>&2
         ( unset HOME; /usr/bin/ruby2.5 -e 'print "foo: #{Dir.respond_to?(:home) && File.readable?(Dir.home) ? Dir.home : Dir.pwd}\n";' )  || true
+        #
+        #
         printf '%s\n' 'aljunk: 50'  1>&2
         ( unset HOME; /usr/bin/ruby2.5 -e 'print "foo: #{Dir.respond_to?(:home) && File.readable?(Dir.home) ? Dir.home : Dir.pwd}\n";' ) 1>&2  || true
         printf '%s\n' 'aljunk: 60'  1>&2
