@@ -27,6 +27,8 @@ jobs:
         echo $(pwd)                 1>&2
         printf '%s\n' 'ALJUNK: b'   1>&2
         ls -la                      1>&2
+        printf '%s\n' 'ALJUNK: c'   1>&2
+        echo maybe tty: $(tty)      1>&2
         printf '%s\n' 'ALJUNK: B'   1>&2
         echo home ech: $HOME        1>&2
         echo home exp: ~            1>&2
