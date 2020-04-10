@@ -101,9 +101,17 @@ jobs:
         set -x
         /usr/bin/ruby2.5 -e 'print "foo: #{Dir.respond_to?(:home) && File.readable?(Dir.home) ? Dir.home : Dir.pwd}\n";'
         /usr/bin/ruby2.5 -e 'print "foo: #{Dir.respond_to?(:home) && File.readable?(Dir.home) ? Dir.home : Dir.pwd}\n";' 1>&2
+        ( /usr/bin/ruby2.5 -e 'print "foo: #{Dir.respond_to?(:home) && File.readable?(Dir.home) ? Dir.home : Dir.pwd}\n";' )
+        ( unset HOME; /usr/bin/ruby2.5 -e 'print "foo: #{Dir.respond_to?(:home) && File.readable?(Dir.home) ? Dir.home : Dir.pwd}\n";' )
+        ( unset HOME; /usr/bin/ruby2.5 -e 'print "foo: #{Dir.respond_to?(:home) && File.readable?(Dir.home) ? Dir.home : Dir.pwd}\n";' ) 1>&2
+        true | ( unset HOME; /usr/bin/ruby2.5 -e 'print "foo: #{Dir.respond_to?(:home) && File.readable?(Dir.home) ? Dir.home : Dir.pwd}\n";' ) 1>&2
+        true | ( unset HOME; /usr/bin/ruby2.5 -e 'print "foo: #{Dir.respond_to?(:home) && File.readable?(Dir.home) ? Dir.home : Dir.pwd}\n";' ) 1>&2 | cat
+        true | ( unset HOME; setsid /usr/bin/ruby2.5 -e 'print "foo: #{Dir.respond_to?(:home) && File.readable?(Dir.home) ? Dir.home : Dir.pwd}\n";' ) 1>&2 | cat
         set +x
         printf '%s\n' 'ALJUNK: I'   1>&2
         printf '%s\n' 'ALJUNK: end' 1>&2
         gem install bundler
         bundle install --jobs 4 --retry 3
         bundle exec --keep-file-descriptors ruby -e 'Dir.glob "./test/**/test_*.rb", &method(:require)'
+        printf '%s\n' 'ALJUNK: I'   1>&2
+        bundle exec --keep-file-descriptors /usr/bin/ruby2.5 -e 'Dir.glob "./test/**/test_*.rb", &method(:require)'
