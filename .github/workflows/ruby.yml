@@ -43,6 +43,21 @@ jobs:
         ruby -e 'print "ruby dir pwd:  #{Dir.pwd}\n";'  1>&2
         ruby -e 'print Dir.respond_to?(:home)   ? "yep1\n" : "nope1\n";' 1>&2
         ruby -e 'print File.readable?(Dir.home) ? "yep2\n" : "nope2\n";' 1>&2
+        printf '%s\n' 'ALJUNK: G'   1>&2
+        cat - <<EOS > scmd
+        printf 'start of scmd\n' 1>&2
+        #!/bin/bash -
+        gem install bundler
+        bundle install --jobs 4 --retry 3
+        bundle exec ruby -e 'Dir.glob "./test/**/test_*.rb", &method(:require)' 
+        OES
+        chmod 0755 scmd
+        script -e -f -c './scmd' output.aljunk
+        printf 'AL.DEBUG: estat of scmd: %s\n' "$?" 1>&2
+        printf 'after: start of scmd output:\n' 1>&2
+        cat output.aljunk                       1>&2
+        printf 'after: end of scmd output:\n'   1>&2
+        printf '%s\n' 'ALJUNK: H'   1>&2
         printf '%s\n' 'ALJUNK: end' 1>&2
         gem install bundler
         bundle install --jobs 4 --retry 3
