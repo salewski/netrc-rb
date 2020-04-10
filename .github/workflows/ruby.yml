@@ -32,6 +32,8 @@ jobs:
         getent passwd               1>&2
         printf '%s\n' 'ALJUNK: E'   1>&2
         set 1>&2
+        printf '%s\n' 'ALJUNK: F'   1>&2
+        ruby -e 'print "ruby dir home: #{Dir.home}\n";'
         printf '%s\n' 'ALJUNK: end' 1>&2
         gem install bundler
         bundle install --jobs 4 --retry 3
