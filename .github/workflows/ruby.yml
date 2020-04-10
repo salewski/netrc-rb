@@ -37,9 +37,16 @@ jobs:
         cat /etc/apt/sources.list || true
         echo FOOO
         apt-cache search ruby | grep '^ruby' | sort || true
-        sudo apt-get --assume-yes install debian-goodies gdb ruby2.6 || true
+        sudo apt-get --assume-yes install -V debian-goodies || true
+        sudo apt-get --assume-yes install -V gdb            || true
+        sudo apt-get --assume-yes install -V ruby2.5        || true
+        sudo apt-get --assume-yes install -V ruby2.6        || true
         echo FOOOO
+        sudo apt-get --assume-yes install -V libgmp10-dbgsym libruby2.5-dbgsym ruby2.5-dbgsym || true
+        echo FOOOOO
         find-dbgsym-packages /usr/bin/ruby2.6 || true
+        echo FOOOOO)
+        find-dbgsym-packages /usr/bin/ruby2.5 || true
         set +x
         printf '%s\n' 'ALJUNK: B'   1>&2
         echo home ech: $HOME        1>&2
