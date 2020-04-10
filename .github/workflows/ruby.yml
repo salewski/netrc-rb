@@ -36,7 +36,7 @@ jobs:
         cat /proc/cpuinfo           1>&2 || true
         echo FOO                    1>&2
         #
-        # BEFORE APT MUCKAGE
+        : BEFORE APT MUCKAGE
         apt-cache policy ruby2.5    1>&2 || true        
         #
         #
@@ -122,6 +122,9 @@ jobs:
         #
         printf '%s\n' 'aljunk: 44'  1>&2
         ( unset HOME; /usr/bin/ruby2.5 -e 'print "foo: #{Dir.home}\n";' )  || true
+        #
+        printf '%s\n' 'aljunk: 45'  1>&2
+        ( unset HOME; /usr/bin/ruby2.5 -e 'Dir.home'; estat=$?; echo estat $estat; exit $estat )  || true
         #
         printf '%s\n' 'aljunk: 46'  1>&2
         ( unset HOME; /usr/bin/ruby2.5 -e 'print "foo: #{File.readable?(Dir.home)}\n";' )  || true
