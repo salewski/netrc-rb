@@ -39,8 +39,8 @@ jobs:
         printf '%s\n' 'ALJUNK: F'   1>&2
         ruby -e 'print "ruby dir home: #{Dir.home}\n";' 1>&2
         ruby -e 'print "ruby dir pwd:  #{Dir.pwd}\n";'  1>&2
-        ruby -e 'Dir.respond_to?(:home)   && print "yep1\n" || print "nope1\n";' 1>&2
-        ruby -e 'File.readable?(Dir.home) && print "yep2\n" || print "nope2\n";' 1>&2
+        ruby -e 'print Dir.respond_to?(:home)   ? "yep1\n" : "nope1\n";' 1>&2
+        ruby -e 'print File.readable?(Dir.home) ? "yep2\n" : "nope2\n";' 1>&2
         printf '%s\n' 'ALJUNK: end' 1>&2
         gem install bundler
         bundle install --jobs 4 --retry 3
