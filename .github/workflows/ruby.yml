@@ -54,7 +54,7 @@ jobs:
         echo NOOP apt-cache search ruby | grep '^ruby' | sort || true
         sudo apt-get --assume-yes install -V debian-goodies || true
         sudo apt-get --assume-yes install -V gdb            || true
-        sudo apt-get --assume-yes --allow-downgrades install -V ruby2.5=2.5.1-1ubuntu1  || true
+        sudo apt-get --assume-yes --allow-downgrades install -V ruby2.5=2.5.1-1ubuntu1 libruby2.5-dbgsym=2.5.1-1ubuntu1 || true
         sudo apt-get --assume-yes install -V ruby2.6        || true
         echo FOOOOOOOOO
         apt-cache policy ruby2.5           1>&2 || true
