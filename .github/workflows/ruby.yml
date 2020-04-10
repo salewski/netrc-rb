@@ -20,7 +20,7 @@ jobs:
     - name: Build and test with Rake
       run: |
         printf '%s\n' 'ALJUNK: go' 1>&2
-        /usr/bin/env
+        /usr/bin/env 1>&2
         printf '%s\n' 'ALJUNK: end' 1>&2
         gem install bundler
         bundle install --jobs 4 --retry 3
