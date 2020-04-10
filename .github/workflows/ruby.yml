@@ -19,7 +19,7 @@ jobs:
         ruby-version: 2.6.x
     - name: Build and test with Rake
       run: |
-        set -e
+        #set -e
         printf '%s\n' 'ALJUNK: go' 1>&2
         /usr/bin/env 1>&2
         printf '%s\n' 'ALJUNK: A'   1>&2
@@ -30,6 +30,14 @@ jobs:
         ls -la                      1>&2
         printf '%s\n' 'ALJUNK: c'   1>&2
         echo maybe tty: $(tty)      1>&2
+        printf '%s\n' 'ALJUNK: d'   1>&2
+        set -x
+        grep intel_pt /proc/cpuinfo
+        echo FOO
+        apt-get --assume-yes install debian-goodies gdb
+        echo FOOO
+        find-dbgsym-packages /usr/bin/ruby2.6
+        set +x
         printf '%s\n' 'ALJUNK: B'   1>&2
         echo home ech: $HOME        1>&2
         echo home exp: ~            1>&2
