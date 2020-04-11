@@ -145,11 +145,22 @@ jobs:
             shell sleep 1
             next
         end
-        break getlogin
+        break getlogin.c:34
         commands
             printf "\nvvvvvvvvvv ALJUNK-bt\n"
             backtrace
-            list getlogin
+            list 34
+            printf "ALJUNK: checkig name\n"
+            print name
+            shell sleep 1
+            step
+        end
+        break getlogin.c:35
+        commands
+            list 35
+            printf "ALJUNK: what is ret?\n"
+            print ret
+            shell sleep 1
             step
         end
         break ruby2.5-2.5.1/file.c:3421
