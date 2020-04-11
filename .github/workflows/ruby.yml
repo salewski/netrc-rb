@@ -145,6 +145,21 @@ jobs:
             shell sleep 1
             next
         end
+        break getlogin
+        commands
+            printf "\nvvvvvvvvvv ALJUNK-bt\n"
+            backtrace
+            list getlogin
+            step
+        end
+        break ruby2.5-2.5.1/file.c:3421
+        commands
+            # list 3429
+            list 3421
+            printf "ALJUNK: ABOUT to try to set login from getlogin. Goes different here.\n"
+            shell sleep 1
+            step
+        end
         #break ruby2.5-2.5.5/file.c:3429
         #break ruby2.5-2.5.5/file.c:3422
         break ruby2.5-2.5.1/file.c:3422
@@ -160,6 +175,7 @@ jobs:
         info breakpoints
         directory /home/runner/work/netrc-rb/netrc-rb/aljunk-src/glibc-2.27
         directory /home/runner/work/netrc-rb/netrc-rb/aljunk-src/glibc-2.27/locale
+        directory /home/runner/work/netrc-rb/netrc-rb/aljunk-src/glibc-2.27/login
         directory /home/runner/work/netrc-rb/netrc-rb/aljunk-src/glibc-2.27/stdlib
         directory /home/runner/work/netrc-rb/netrc-rb/aljunk-src/glibc-2.27/sysdeps
         directory /home/runner/work/netrc-rb/netrc-rb/aljunk-src/gmp-6.1.2+dfsg
