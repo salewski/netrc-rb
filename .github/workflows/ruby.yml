@@ -225,6 +225,10 @@ jobs:
             print tpwd
             printf "ALJUNK: what is pwd?\n"
             print pwd
+            printf "ALJUNK: what is buf?\n"
+            print buf
+            printf "ALJUNK: what is buflen?\n"
+            print buflen
             continue
         end
         break getlogin_r.c:88
@@ -236,6 +240,13 @@ jobs:
             print needed
             printf "ALJUNK: what is namesize?\n"
             print namesize
+            continue
+        end
+        break __getpwuid_r
+        commands
+            set listsize 50
+            list __getpwuid_r
+            set listsize 40
             continue
         end
         break ruby2.5-2.5.1/file.c:3421
