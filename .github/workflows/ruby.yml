@@ -103,6 +103,8 @@ jobs:
           && cat - <<'EOGDB' >> aljunk.gdb
         set trace-commands on
         set verbose on
+        set width unlimited
+        set pagination off
         set debug auto-load off
         set startup-with-shell off
         #set exec-wrapper /usr/bin/setsid
@@ -134,7 +136,7 @@ jobs:
         end
         #break ruby2.5-2.5.5/file.c:3427
         #break ruby2.5-2.5.5/file.c:3420
-        #break ruby2.5-2.5.1/file.c:3420
+        break ruby2.5-2.5.1/file.c:3420
         commands
           continue
             # list 3427
@@ -146,7 +148,7 @@ jobs:
         end
         #break ruby2.5-2.5.5/file.c:3429
         #break ruby2.5-2.5.5/file.c:3422
-        #break ruby2.5-2.5.1/file.c:3422
+        break ruby2.5-2.5.1/file.c:3422
         commands
           continue
             # list 3429
@@ -171,15 +173,20 @@ jobs:
         c
         q
         EOGDB
+          : ALJUNK: SHOW CONTENTS OF GDB COMMANDS SCRIPT
+          cat aljunk.gdb 1>&2 || true
           cat - <<'EODRIVER' > algo-gdb
         #!/bin/bash -
         declare -r PROG='algo-gdb'
         set -x
         gdb -q < './aljunk.gdb' | tee './aljunk-gdb.log'
         EODRIVER
+          : ALJUNK: SHOW CONTENTS OF GDB DRIVER SCRIPT
+          cat ./algo-gdb 1>&2 || true
           chmod 0755 ./algo-gdb \
           && ./algo-gdb         \
         ) || true
+        : ALJUNK: SHOW CONTENTS OF ALJUNK-GDB.LOG file
         cat aljunk-gdb/aljunk-gdb.log 1>&2 || true
         set +x
         printf '%s\n' 'ALJUNK: b'   1>&2
