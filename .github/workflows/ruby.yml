@@ -247,6 +247,28 @@ jobs:
             set listsize 50
             list __getpwuid_r
             set listsize 40
+            printf "ALJUNK: what is INTERNAL"
+            macro expand INTERNAL
+            printf "ALJUNK: what is REENTRANT_NAME"
+            macro expand REENTRANT_NAME
+            printf "ALJUNK: what is ADD_PARAMS"
+            macro expand ADD_PARAMS
+            printf "ALJUNK: what is LOOKUP_TYPE"
+            macro expand LOOKUP_TYPE
+            printf "ALJUNK: what is H_ERRNO_PARM"
+            macro expand H_ERRNO_PARM
+            printf "ALJUNK: what is EXTRA_PARAMS"
+            macro expand EXTRA_PARAMS
+            continue
+        end
+        #
+        # AL.NOTE: this is the macro that expands into __getpwuid_r
+        #break nss/getXXbyYY_r.c:191
+        break nss/getXXbyYY_r.c:206
+        commands
+            set listsize 500
+            list 206
+            set listsize 40
             continue
         end
         break ruby2.5-2.5.1/file.c:3421
