@@ -109,7 +109,7 @@ jobs:
         set startup-with-shell off
         #set exec-wrapper /usr/bin/setsid
         set breakpoint pending on
-        set listsize 30
+        set listsize 40
         # file /bin/bash
         # set args -c 'env | sort; echo; echo aljunk: ${HOME}'
         file /usr/bin/ruby2.5
@@ -141,9 +141,7 @@ jobs:
             printf "\nvvvvvvvvvv ALJUNK-bt\n"
             backtrace
             info threads
-            shell sleep 1
             list rb_default_home_dir
-            shell sleep 1
             printf "ALJUNK: try set dir from getenv of HOME\n"
             next
         end
@@ -155,7 +153,6 @@ jobs:
             list 3420
             printf "ALJUNK: show dir (should be 0x0)\n"
             print dir
-            shell sleep 1
             next
         end
         break getlogin.c:34
@@ -166,7 +163,6 @@ jobs:
             printf "ALJUNK: checking name (prior to setting; should be empty string here)\n"
             print name
             info breakpoints
-            shell sleep 1
             step
         end
         break getlogin.c:35
@@ -174,7 +170,6 @@ jobs:
             list 35
             printf "ALJUNK: what is ret?\n"
             print ret
-            shell sleep 1
             step
         end
         break __getlogin_r_loginuid
@@ -190,7 +185,6 @@ jobs:
             # list 3429
             list 3421
             printf "ALJUNK: ABOUT to try to set login from getlogin. Goes different here.\n"
-            shell sleep 1
             step
         end
         #break ruby2.5-2.5.5/file.c:3429
@@ -201,7 +195,6 @@ jobs:
             list 3422
             printf "ALJUNK: tried to set login from getlogin (may or may not be 0x0)\n"
             print login
-            shell sleep 1
             printf "ALJUNK: in rb_default_home_dir; continuing\n"
             continue
         end
