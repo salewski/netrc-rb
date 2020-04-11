@@ -194,6 +194,15 @@ jobs:
             print fd
             continue
         end
+        break getlogin_r.c:46
+        commands
+            set listsize 50
+            list 46
+            set listsize 40
+            printf "ALJUNK: what is n?\n"
+            print n
+            continue
+        end
         break ruby2.5-2.5.1/file.c:3421
         commands
             # list 3429
