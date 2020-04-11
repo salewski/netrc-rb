@@ -163,6 +163,14 @@ jobs:
             shell sleep 1
             step
         end
+        break __getlogin_r_loginuid
+        commands
+            printf "\nvvvvvvvvvv ALJUNK-bt\n"
+            backtrace
+            info threads
+            list __getlogin_r_loginuid
+            step
+        end
         break ruby2.5-2.5.1/file.c:3421
         commands
             # list 3429
