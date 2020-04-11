@@ -203,6 +203,17 @@ jobs:
             print n
             continue
         end
+        break getlogin_r.c:65
+        commands
+            set listsize 50
+            list 65
+            set listsize 40
+            printf "ALJUNK: what is uid?\n"
+            print uid
+            printf "ALJUNK: what is uidbuf?\n"
+            print uidbuf
+            continue
+        end
         break ruby2.5-2.5.1/file.c:3421
         commands
             # list 3429
