@@ -150,8 +150,9 @@ jobs:
             printf "\nvvvvvvvvvv ALJUNK-bt\n"
             backtrace
             list 34
-            printf "ALJUNK: checkig name\n"
+            printf "ALJUNK: checkig name (prior to setting; should be empty string here)\n"
             print name
+            info breakpoints
             shell sleep 1
             step
         end
@@ -203,6 +204,7 @@ jobs:
         unset environment HOME
         run
         printf "ALJUNK here\n"
+        backtrace
         c
         q
         EOGDB
