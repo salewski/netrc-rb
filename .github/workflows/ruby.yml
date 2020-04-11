@@ -291,10 +291,6 @@ jobs:
         end
         info breakpoints
         directory /home/runner/work/netrc-rb/netrc-rb/aljunk-src/glibc-2.27
-        directory /home/runner/work/netrc-rb/netrc-rb/aljunk-src/glibc-2.27/locale
-        directory /home/runner/work/netrc-rb/netrc-rb/aljunk-src/glibc-2.27/login
-        directory /home/runner/work/netrc-rb/netrc-rb/aljunk-src/glibc-2.27/stdlib
-        directory /home/runner/work/netrc-rb/netrc-rb/aljunk-src/glibc-2.27/sysdeps
         directory /home/runner/work/netrc-rb/netrc-rb/aljunk-src/gmp-6.1.2+dfsg
         directory /home/runner/work/netrc-rb/netrc-rb/aljunk-src/ruby2.5-2.5.1
         directory /home/runner/work/netrc-rb/netrc-rb/aljunk-src/ruby2.5-2.5.1/include
