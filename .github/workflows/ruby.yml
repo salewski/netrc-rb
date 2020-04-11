@@ -244,7 +244,7 @@ jobs:
         end
         break __getpwuid_r
         commands
-            set listsize 50
+            set listsize 500
             list __getpwuid_r
             set listsize 40
             printf "ALJUNK: what is INTERNAL"
@@ -264,7 +264,7 @@ jobs:
         #
         # AL.NOTE: this is the macro that expands into __getpwuid_r
         #break nss/getXXbyYY_r.c:191
-        break nss/getXXbyYY_r.c:206
+        break getXXbyYY_r.c:206
         commands
             set listsize 500
             list 206
