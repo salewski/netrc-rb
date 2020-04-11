@@ -138,7 +138,6 @@ jobs:
         #break ruby2.5-2.5.5/file.c:3420
         break ruby2.5-2.5.1/file.c:3420
         commands
-          continue
             # list 3427
             list 3420
             printf "ALJUNK: show dir (should be 0x0)\n"
@@ -150,7 +149,6 @@ jobs:
         #break ruby2.5-2.5.5/file.c:3422
         break ruby2.5-2.5.1/file.c:3422
         commands
-          continue
             # list 3429
             list 3422
             printf "ALJUNK: tried to set login from getlogin (may or may not be 0x0)\n"
