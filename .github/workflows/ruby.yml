@@ -98,14 +98,15 @@ jobs:
         printf '%s\n' 'ALJUNK: B'   1>&2
         ( mkdir aljunk-gdb \
           && cd aljunk-gdb \
-          && cat - <<'EOGDB' > aljunk.gdb
-set trace-commands on
-set verbose on
-set debug auto-load off
-set startup-with-shell off
-#set exec-wrapper /usr/bin/setsid
-set breakpoint pending on
-set listsize 20
+          && echo -n '' > aljunk.gdb
+printf '%s\n' 'set trace-commands on'      >> aljunk.gdb
+printf '%s\n' 'set verbose on'             >> aljunk.gdb
+printf '%s\n' 'set debug auto-load off'    >> aljunk.gdb
+printf '%s\n' 'set startup-with-shell off' >> aljunk.gdb
+printf '%s\n' '#set exec-wrapper /usr/bin/setsid' >> aljunk.gdb
+printf '%s\n' 'set breakpoint pending on'  >> aljunk.gdb
+printf '%s\n' 'set listsize 20'            >> aljunk.gdb
+exit 77
 # file /bin/bash
 # set args -c 'env | sort; echo; echo aljunk: ${HOME}'
 file /usr/bin/ruby2.5
