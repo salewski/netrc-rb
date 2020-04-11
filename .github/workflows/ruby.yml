@@ -127,21 +127,21 @@ jobs:
             printf "\nvvvvvvvvvv ALJUNK-bt\n"
             backtrace
             list dir_s_home
-            step
+            continue
         end
         break ruby2.5-2.5.1/dir.c:3058
         commands
             list 3058
             printf "ALJUNK: show user arg\n"
             print user
-            step
+            continue
         end
         break ruby2.5-2.5.1/dir.c:3066
         commands
             list 3066
             printf "ALJUNK: foothold? What is user?\n"
             print user
-            step
+            continue
         end
         break rb_default_home_dir
         commands
@@ -150,7 +150,7 @@ jobs:
             info threads
             list rb_default_home_dir
             printf "ALJUNK: try set dir from getenv of HOME\n"
-            next
+            continue
         end
         #break ruby2.5-2.5.5/file.c:3427
         #break ruby2.5-2.5.5/file.c:3420
@@ -160,7 +160,7 @@ jobs:
             list 3420
             printf "ALJUNK: show dir (should be 0x0)\n"
             print dir
-            next
+            continue
         end
         break getlogin.c:34
         commands
@@ -170,14 +170,14 @@ jobs:
             printf "ALJUNK: checking name (prior to setting; should be empty string here)\n"
             print name
             info breakpoints
-            step
+            continue
         end
         break getlogin.c:35
         commands
             list 35
             printf "ALJUNK: what is ret?\n"
             print ret
-            step
+            continue
         end
         break __getlogin_r_loginuid
         commands
@@ -185,14 +185,14 @@ jobs:
             backtrace
             info threads
             list __getlogin_r_loginuid
-            step
+            continue
         end
         break ruby2.5-2.5.1/file.c:3421
         commands
             # list 3429
             list 3421
             printf "ALJUNK: ABOUT to try to set login from getlogin. Goes different here.\n"
-            step
+            continue
         end
         #break ruby2.5-2.5.5/file.c:3429
         #break ruby2.5-2.5.5/file.c:3422
