@@ -96,17 +96,18 @@ jobs:
         apt-cache policy ruby2.5    || true
         set +x
         printf '%s\n' 'ALJUNK: B'   1>&2
-        ( mkdir aljunk-gdb \
+        set -x
+        ( set -x
+          mkdir aljunk-gdb \
           && cd aljunk-gdb \
-          && echo -n '' > aljunk.gdb \
-          && printf '%s\n' 'set trace-commands on'      >> aljunk.gdb \
-          && printf '%s\n' 'set verbose on'             >> aljunk.gdb \
-          && printf '%s\n' 'set debug auto-load off'    >> aljunk.gdb \
-          && printf '%s\n' 'set startup-with-shell off' >> aljunk.gdb \
-          && printf '%s\n' '#set exec-wrapper /usr/bin/setsid' >> aljunk.gdb \
-          && printf '%s\n' 'set breakpoint pending on'  >> aljunk.gdb \
-          && printf '%s\n' 'set listsize 20'            >> aljunk.gdb \
-          cat - <<'EOGDB' >> aljunk.gdb
+          && cat - <<'EOGDB' >> aljunk.gdb
+        set trace-commands on
+        set verbose on
+        set debug auto-load off
+        set startup-with-shell off
+        #set exec-wrapper /usr/bin/setsid
+        set breakpoint pending on
+        set listsize 20
         # file /bin/bash
         # set args -c 'env | sort; echo; echo aljunk: ${HOME}'
         file /usr/bin/ruby2.5
@@ -180,6 +181,7 @@ jobs:
           && ./algo-gdb         \
         ) || true
         cat aljunk-gdb/aljunk-gdb.log 1>&2 || true
+        set +x
         printf '%s\n' 'ALJUNK: b'   1>&2
         echo home ech: $HOME        1>&2
         echo home exp: ~            1>&2
