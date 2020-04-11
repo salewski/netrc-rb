@@ -134,7 +134,14 @@ jobs:
             list 3058
             printf "ALJUNK: show user arg\n"
             print user
-            next
+            step
+        end
+        break ruby2.5-2.5.1/dir.c:3066
+        commands
+            list 3066
+            printf "ALJUNK: foothold? What is user?\n"
+            print user
+            step
         end
         break rb_default_home_dir
         commands
