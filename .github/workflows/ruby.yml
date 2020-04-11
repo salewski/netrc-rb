@@ -214,6 +214,30 @@ jobs:
             print uidbuf
             continue
         end
+        break getlogin_r.c:81
+        commands
+            set listsize 50
+            list 81
+            set listsize 40
+            printf "ALJUNK: what is res?\n"
+            print res
+            printf "ALJUNK: what is tpwd?\n"
+            print tpwd
+            printf "ALJUNK: what is pwd?\n"
+            print pwd
+            continue
+        end
+        break getlogin_r.c:88
+        commands
+            set listsize 50
+            list 88
+            set listsize 40
+            printf "ALJUNK: what is needed?\n"
+            print needed
+            printf "ALJUNK: what is namesize?\n"
+            print namesize
+            continue
+        end
         break ruby2.5-2.5.1/file.c:3421
         commands
             # list 3429
