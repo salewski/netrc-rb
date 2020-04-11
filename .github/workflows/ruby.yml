@@ -42,6 +42,17 @@ jobs:
         #
         cat /etc/apt/sources.list   1>&2 || true
         echo FOOO                   1>&2
+        sudo sed -i -e 's,^# \(deb-src http://azure.archive.ubuntu.com/ubuntu/ bionic main restricted\)$,\1,' /etc/apt/sources.list || true
+        echo NOOP sudo sed -i -e 's,^# \(deb-src http://azure.archive.ubuntu.com/ubuntu/ bionic-updates main restricted\)$,\1,' /etc/apt/sources.list || true
+        echo NOOP sudo sed -i -e 's,^# \(deb-src http://azure.archive.ubuntu.com/ubuntu/ bionic universe\)$,\1,' /etc/apt/sources.list || true
+        echo NOOP sudo sed -i -e 's,^# \(deb-src http://azure.archive.ubuntu.com/ubuntu/ bionic-updates universe\)$,\1,' /etc/apt/sources.list || true
+        echo NOOP sudo sed -i -e 's,^# \(\)$,\1,' /etc/apt/sources.list || true
+        echo NOOP sudo sed -i -e 's,^# \(\)$,\1,' /etc/apt/sources.list || true
+        echo NOOP sudo sed -i -e 's,^# \(\)$,\1,' /etc/apt/sources.list || true
+        echo NOOP sudo sed -i -e 's,^# \(\)$,\1,' /etc/apt/sources.list || true
+        echo NOOP sudo sed -i -e 's,^# \(\)$,\1,' /etc/apt/sources.list || true
+        : ALJUNK check contents of modified .../apt/sources.list
+        cat /etc/apt/sources.list   1>&2 || true
         find /etc/apt -ls           1>&2 || true
         echo FOOOO                  1>&2
         grep -R -e 'ddeb' -e 'dbgsym' /etc/apt 1>&2 || true
