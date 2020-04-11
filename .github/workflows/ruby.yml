@@ -129,6 +129,13 @@ jobs:
             list dir_s_home
             step
         end
+        break ruby2.5-2.5.1/dir.c:3058
+        commands
+            list 3058
+            printf "ALJUNK: show user arg\n"
+            print user
+            next
+        end
         break rb_default_home_dir
         commands
             printf "\nvvvvvvvvvv ALJUNK-bt\n"
