@@ -98,84 +98,84 @@ jobs:
         printf '%s\n' 'ALJUNK: B'   1>&2
         ( mkdir aljunk-gdb \
           && cd aljunk-gdb \
-          && echo -n '' > aljunk.gdb
-printf '%s\n' 'set trace-commands on'      >> aljunk.gdb
-printf '%s\n' 'set verbose on'             >> aljunk.gdb
-printf '%s\n' 'set debug auto-load off'    >> aljunk.gdb
-printf '%s\n' 'set startup-with-shell off' >> aljunk.gdb
-printf '%s\n' '#set exec-wrapper /usr/bin/setsid' >> aljunk.gdb
-printf '%s\n' 'set breakpoint pending on'  >> aljunk.gdb
-printf '%s\n' 'set listsize 20'            >> aljunk.gdb
-exit 77
-# file /bin/bash
-# set args -c 'env | sort; echo; echo aljunk: ${HOME}'
-file /usr/bin/ruby2.5
-set args -e 'Dir.home;'
-break main
-break dir_s_home
-break rb_home_dir_of
-commands 1 2 3
-    printf "\nvvvvvvvvvv ALJUNK-bt\n"
-    backtrace
-    printf "^^^^^^^^^^\n\n\n"
-    continue
-end
-break rb_default_home_dir
-commands
-    printf "\nvvvvvvvvvv ALJUNK-bt\n"
-    backtrace
-    info threads
-    shell sleep 1
-    list rb_default_home_dir
-    shell sleep 1
-    printf "ALJUNK: try set dir from getenv of HOME\n"
-    next
-end
-#break ruby2.5-2.5.5/file.c:3427
-#break ruby2.5-2.5.5/file.c:3420
-#break ruby2.5-2.5.1/file.c:3420
-commands
-  continue
-    # list 3427
-    list 3420
-    printf "ALJUNK: show dir (should be 0x0)\n"
-    print dir
-    shell sleep 1
-    next
-end
-#break ruby2.5-2.5.5/file.c:3429
-#break ruby2.5-2.5.5/file.c:3422
-#break ruby2.5-2.5.1/file.c:3422
-commands
-  continue
-    # list 3429
-    list 3422
-    printf "ALJUNK: tried to set login from getlogin (may or may not be 0x0)\n"
-    print login
-    shell sleep 1
-    printf "ALJUNK: in rb_default_home_dir; continuing\n"
-    continue
-end
-info breakpoints
-directory /home/runner/work/netrc-rb/netrc-rb/aljunk-src/glibc-2.27
-directory /home/runner/work/netrc-rb/netrc-rb/aljunk-src/glibc-2.27/locale
-directory /home/runner/work/netrc-rb/netrc-rb/aljunk-src/glibc-2.27/stdlib
-directory /home/runner/work/netrc-rb/netrc-rb/aljunk-src/glibc-2.27/sysdeps
-directory /home/runner/work/netrc-rb/netrc-rb/aljunk-src/gmp-6.1.2+dfsg
-directory /home/runner/work/netrc-rb/netrc-rb/aljunk-src/ruby2.5-2.5.1
-directory /home/runner/work/netrc-rb/netrc-rb/aljunk-src/ruby2.5-2.5.1/include
-unset environment HOME
-run
-printf "ALJUNK here\n"
-c
-q
-EOGDB\
+          && echo -n '' > aljunk.gdb \
+          && printf '%s\n' 'set trace-commands on'      >> aljunk.gdb \
+          && printf '%s\n' 'set verbose on'             >> aljunk.gdb \
+          && printf '%s\n' 'set debug auto-load off'    >> aljunk.gdb \
+          && printf '%s\n' 'set startup-with-shell off' >> aljunk.gdb \
+          && printf '%s\n' '#set exec-wrapper /usr/bin/setsid' >> aljunk.gdb \
+          && printf '%s\n' 'set breakpoint pending on'  >> aljunk.gdb \
+          && printf '%s\n' 'set listsize 20'            >> aljunk.gdb \
+          cat - <<'EOGDB' >> aljunk.gdb
+        # file /bin/bash
+        # set args -c 'env | sort; echo; echo aljunk: ${HOME}'
+        file /usr/bin/ruby2.5
+        set args -e 'Dir.home;'
+        break main
+        break dir_s_home
+        break rb_home_dir_of
+        commands 1 2 3
+            printf "\nvvvvvvvvvv ALJUNK-bt\n"
+            backtrace
+            printf "^^^^^^^^^^\n\n\n"
+            continue
+        end
+        break rb_default_home_dir
+        commands
+            printf "\nvvvvvvvvvv ALJUNK-bt\n"
+            backtrace
+            info threads
+            shell sleep 1
+            list rb_default_home_dir
+            shell sleep 1
+            printf "ALJUNK: try set dir from getenv of HOME\n"
+            next
+        end
+        #break ruby2.5-2.5.5/file.c:3427
+        #break ruby2.5-2.5.5/file.c:3420
+        #break ruby2.5-2.5.1/file.c:3420
+        commands
+          continue
+            # list 3427
+            list 3420
+            printf "ALJUNK: show dir (should be 0x0)\n"
+            print dir
+            shell sleep 1
+            next
+        end
+        #break ruby2.5-2.5.5/file.c:3429
+        #break ruby2.5-2.5.5/file.c:3422
+        #break ruby2.5-2.5.1/file.c:3422
+        commands
+          continue
+            # list 3429
+            list 3422
+            printf "ALJUNK: tried to set login from getlogin (may or may not be 0x0)\n"
+            print login
+            shell sleep 1
+            printf "ALJUNK: in rb_default_home_dir; continuing\n"
+            continue
+        end
+        info breakpoints
+        directory /home/runner/work/netrc-rb/netrc-rb/aljunk-src/glibc-2.27
+        directory /home/runner/work/netrc-rb/netrc-rb/aljunk-src/glibc-2.27/locale
+        directory /home/runner/work/netrc-rb/netrc-rb/aljunk-src/glibc-2.27/stdlib
+        directory /home/runner/work/netrc-rb/netrc-rb/aljunk-src/glibc-2.27/sysdeps
+        directory /home/runner/work/netrc-rb/netrc-rb/aljunk-src/gmp-6.1.2+dfsg
+        directory /home/runner/work/netrc-rb/netrc-rb/aljunk-src/ruby2.5-2.5.1
+        directory /home/runner/work/netrc-rb/netrc-rb/aljunk-src/ruby2.5-2.5.1/include
+        unset environment HOME
+        run
+        printf "ALJUNK here\n"
+        c
+        q
+        EOGDB\
           && cat - <<'EODRIVER' > algo-gdb
-#!/bin/bash -
-declare -r PROG='algo-gdb'
-set -x
-gdb -q < './aljunk.gdb' | tee './aljunk-gdb.log'
-EODRIVER\
+        #!/bin/bash -
+        declare -r PROG='algo-gdb'
+        set -x
+        gdb -q < './aljunk.gdb' | tee './aljunk-gdb.log'
+        EODRIVER\
           && chmod 0755 ./algo-gdb \
           && ./algo-gdb            \
         ) || true
