@@ -169,15 +169,15 @@ jobs:
         printf "ALJUNK here\n"
         c
         q
-        EOGDB\
-          && cat - <<'EODRIVER' > algo-gdb
+        EOGDB
+          cat - <<'EODRIVER' > algo-gdb
         #!/bin/bash -
         declare -r PROG='algo-gdb'
         set -x
         gdb -q < './aljunk.gdb' | tee './aljunk-gdb.log'
-        EODRIVER\
-          && chmod 0755 ./algo-gdb \
-          && ./algo-gdb            \
+        EODRIVER
+          chmod 0755 ./algo-gdb \
+          && ./algo-gdb         \
         ) || true
         cat aljunk-gdb/aljunk-gdb.log 1>&2 || true
         printf '%s\n' 'ALJUNK: b'   1>&2
