@@ -98,28 +98,8 @@ jobs:
         printf '%s\n' 'ALJUNK: B'   1>&2
         ( mkdir aljunk-gdb \
           && cd aljunk-gdb \
-          && cat - <<'EOGDB' > aljunk.gdb \
-#     libc6=2.27-3ubuntu1 \
-#     libgmp10=2:6.1.2+dfsg-2 \
-#     ruby2.5=2.5.1-1ubuntu1  \
-# directory /home/runner/work/netrc-rb/netrc-rb/aljunk-src/glibc-2.27 \
-# directory /home/runner/work/netrc-rb/netrc-rb/aljunk-src/glibc-2.27/locale \
-# directory /home/runner/work/netrc-rb/netrc-rb/aljunk-src/glibc-2.27/stdlib \
-# directory /home/runner/work/netrc-rb/netrc-rb/aljunk-src/gmp-6.1.2+dfsg    \
-# directory /home/runner/work/netrc-rb/netrc-rb/aljunk-src/ruby2.5-2.5.1     \
-# directory /home/runner/work/netrc-rb/netrc-rb/aljunk-src/ruby2.5-2.5.1/include \
-#\
-printf "\n\\
-    HINT: Load debug symbols from relevant Debian *-dbgsym packages\n\\
-\n\\
-          # apt-get -u install -V debian-goodies\n\\
-\n\\
-          $ find-dbgsym-packages /usr/bin/ruby2.5\n\\
-          libgmp10-dbgsym libruby2.5-dbgsym ruby2.5-dbgsym\n\\
-\n\\
-          # apt-get -u install -V libgmp10-dbgsym libruby2.5-dbgsym ruby2.5-dbgsym\n\\
-"\
-set trace-commands on\
+          && cat - <<'EOGDB' > aljunk.gdb
+set trace-commands on
 set verbose on
 set debug auto-load off
 set startup-with-shell off
