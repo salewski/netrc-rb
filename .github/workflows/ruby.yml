@@ -175,8 +175,8 @@ jobs:
         break getlogin.c:35
         commands
             list 35
-            printf "ALJUNK: what is ret?\n"
-            print ret
+            printf "ALJUNK: what is res?\n"
+            print res
             continue
         end
         break __getlogin_r_loginuid
@@ -185,6 +185,13 @@ jobs:
             backtrace
             info threads
             list __getlogin_r_loginuid
+            continue
+        end
+        break getlogin_r.c:38
+        commands
+            list 38
+            printf "ALJUNK: what is fd?\n"
+            print fd
             continue
         end
         break ruby2.5-2.5.1/file.c:3421
