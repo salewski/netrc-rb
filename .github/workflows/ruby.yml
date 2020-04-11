@@ -115,13 +115,19 @@ jobs:
         file /usr/bin/ruby2.5
         set args -e 'Dir.home;'
         break main
-        break dir_s_home
         break rb_home_dir_of
-        commands 1 2 3
+        commands 1 2
             printf "\nvvvvvvvvvv ALJUNK-bt\n"
             backtrace
             printf "^^^^^^^^^^\n\n\n"
             continue
+        end
+        break dir_s_home
+        commands
+            printf "\nvvvvvvvvvv ALJUNK-bt\n"
+            backtrace
+            list dir_s_home
+            step
         end
         break rb_default_home_dir
         commands
@@ -150,7 +156,7 @@ jobs:
             printf "\nvvvvvvvvvv ALJUNK-bt\n"
             backtrace
             list 34
-            printf "ALJUNK: checkig name (prior to setting; should be empty string here)\n"
+            printf "ALJUNK: checking name (prior to setting; should be empty string here)\n"
             print name
             info breakpoints
             shell sleep 1
