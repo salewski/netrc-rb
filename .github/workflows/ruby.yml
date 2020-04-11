@@ -75,10 +75,11 @@ jobs:
         find-dbgsym-packages /usr/bin/ruby2.5 || true
         ( mkdir aljunk-src \
           && cd aljunk-src \
+          && apt-get source libc6=2.27-3ubuntu1 \
         ) || true
         apt-cache policy libc6      || true
-        apt-cache policy libgmp10-2 || true
-        apt-cache policy libruby2.5 || true
+        apt-cache policy libgmp10   || true
+        apt-cache policy ruby2.5    || true
         set +x
         printf '%s\n' 'ALJUNK: B'   1>&2
         echo home ech: $HOME        1>&2
