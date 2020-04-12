@@ -269,19 +269,19 @@ jobs:
             set listsize 500
             list __getpwuid_r
             set listsize 40
-            printf "ALJUNK: param check: what is uid?"
+            printf "ALJUNK: param check: what is uid? (recall that unsigned 4294967295 means -1)\n"
             print uid
-            printf "ALJUNK: what is INTERNAL"
+            printf "ALJUNK: what is INTERNAL?\n"
             macro expand INTERNAL
-            printf "ALJUNK: what is REENTRANT_NAME"
+            printf "ALJUNK: what is REENTRANT_NAME?\n"
             macro expand REENTRANT_NAME
-            printf "ALJUNK: what is ADD_PARAMS"
+            printf "ALJUNK: what is ADD_PARAMS?\n"
             macro expand ADD_PARAMS
-            printf "ALJUNK: what is LOOKUP_TYPE"
+            printf "ALJUNK: what is LOOKUP_TYPE?\n"
             macro expand LOOKUP_TYPE
-            printf "ALJUNK: what is H_ERRNO_PARM"
+            printf "ALJUNK: what is H_ERRNO_PARM?\n"
             macro expand H_ERRNO_PARM
-            printf "ALJUNK: what is EXTRA_PARAMS"
+            printf "ALJUNK: what is EXTRA_PARAMS?\n"
             macro expand EXTRA_PARAMS
             continue
         end
