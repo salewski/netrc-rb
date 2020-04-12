@@ -30,6 +30,9 @@ jobs:
         cat /etc/nsswitch.conf      1>&2 || true
         cat /proc/self/loginuid     1>&2 || true
         echo                        1>&2 || true
+        /usr/bin/ruby2.5 -e 'print "process uid: #{Process.uid}\n";' 1>&2 || true
+        /usr/bin/ruby2.5 -r etc -e 'print "can we load the etc module? Record: #{Etc.getpwuid( Process.uid )}\n";' 1>&2 || true
+        echo                        1>&2 || true
         ( set -x; unset HOME; /usr/bin/getent passwd $(/usr/bin/id --user); echo $?; /usr/bin/ruby2.5 -e 'Dir.home;'; echo $? ) 1>&2 || true
         /usr/bin/env                1>&2 || true
         set +x
