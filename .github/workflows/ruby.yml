@@ -1,25 +1,24 @@
-name: Ruby
+name: Whatever
 
 on:
-  push:
-    branches: [ ads/filehome-vs-login-muckage ]
-  pull_request:
-    branches: [ ads/filehome-vs-login-muckage ]
+    push:
+        branches: [ ads/filehome-vs-login-muckage ]
 
-# foo: bogon comment; will this trigger the action even though this branch is not listed above?
+    pull_request:
+        branches: [ ads/filehome-vs-login-muckage ]
+
 jobs:
-  build:
+    mybuild:
 
-    runs-on: ubuntu-latest
+        runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v2
-    - name: Set up Ruby 2.6
-      uses: actions/setup-ruby@v1
-      with:
-        ruby-version: 2.6.x
-    - name: Build and test with Rake
-      run: |
-        gem install bundler
-        bundle install --jobs 4 --retry 3
-        bundle exec ruby -e 'Dir.glob "./test/**/test_*.rb", &method(:require)'
+        steps:
+            - uses: actions/checkout@v2
+            - name: Run my debugging commands
+              run: |
+                echo NOOP set -e
+                printf '%s\n' 'ALJUNK: go' 1>&2
+                set -x
+                /usr/bin/whoami             1>&2 || true
+                /usr/bin/id                 1>&2 || true
+                /usr/bin/id --user          1>&2 || true
