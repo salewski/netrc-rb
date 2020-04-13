@@ -6,6 +6,7 @@ on:
   pull_request:
     branches: [ master ]
 
+# foo: bogon comment; will this trigger the action even though this branch is not listed above?
 jobs:
   build:
 
