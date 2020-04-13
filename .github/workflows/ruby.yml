@@ -19,14 +19,24 @@ jobs:
                   echo NOOP set -e
                   printf '%s\n' 'ALJUNK: go' 1>&2
                   set -x
+                  :
+                  : Note that basic environment looks sane
+                  :
                   /usr/bin/whoami             1>&2 || true
                   /usr/bin/id                 1>&2 || true
                   /usr/bin/id --user          1>&2 || true
                   /usr/bin/getent passwd $(/usr/bin/id --user) 1>&2 || true
-                  echo                        1>&2 || true
+                  :
+                  : This will be 4294967295  a.k.a. -1  for a non-login-descendant process
+                  cat /proc/self/loginuid     1>&2 || true
+                  :
+                  :
                   /usr/bin/ruby2.5 -e 'print "process uid: #{Process.uid}\n";' 1>&2 || true
                   /usr/bin/ruby2.5 -r etc -e 'print "can we load the etc module? Record: #{Etc.getpwuid( Process.uid )}\n";' 1>&2 || true
-                  echo                             1>&2 || true
+                  :
+                  : When HOME is set, as it is by default, Dir.home works without a problem
+                  echo "$HOME"                     1>&2 || true
                   /usr/bin/ruby2.5 -e 'Dir.home;'  1>&2 || true
-                  echo $?                          1>&2 || true
+                  :
+                  : When HOME is not set....kaboom!
                   ( set -x; unset HOME; /usr/bin/ruby2.5 -e 'Dir.home;'; echo $? ) 1>&2 || true
