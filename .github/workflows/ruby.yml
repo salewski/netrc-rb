@@ -13,7 +13,6 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - uses: actions/checkout@v2
             - name: Run my debugging commands
               run: |
                   echo NOOP set -e
